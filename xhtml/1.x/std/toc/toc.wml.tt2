@@ -28,7 +28,7 @@ chomp($id);
 chomp($tag_body);
 my $parser = HTML::TokeParser::Simple->new(\$tag_body);
 my $my_body;
-while ($token = $parser->get_token())
+while (my $token = $parser->get_token())
 {
     if ($token->is_start_tag("a") || $token->is_end_tag("a"))
     {
