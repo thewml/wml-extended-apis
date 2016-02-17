@@ -1,4 +1,4 @@
-## 
+##
 ##  wml::xhtml1::std::toc - Table of Conents Generator
 ##  Copyright (c) 2005 Shlomi Fish
 ##  Distributed under the MIT X11 License
@@ -67,8 +67,8 @@ sub myfunc
 {
 my $elem = shift;
 return ("<li>", "<a href=\"#" . $elem->{id} . "\">" . $elem->{body} . "</a>",
-        (@{$_->{subs}} ? 
-            ("<br />", "<ul>", 
+        (@{$_->{subs}} ?
+            ("<br />", "<ul>",
                 (map { myfunc($_)
                     }
                 @{$_->{subs}}),
@@ -78,10 +78,10 @@ return ("<li>", "<a href=\"#" . $elem->{id} . "\">" . $elem->{body} . "</a>",
         ),
         "</li>");
 }
-END 
+END
 {
 my $text;
-$text = join ("\n", 
+$text = join ("\n",
     "<ul>",
     (map { myfunc($_) } @{$wml_xhtml_std_toc_section->{subs}}),
     "</ul>",
