@@ -10,7 +10,8 @@ use vars qw($wml_xhtml_std_toc_section);
 $wml_xhtml_std_toc_section = { 'subs' => [] };
 }:>
 [% FOREACH index IN [2,3,4,5,6] %]
-<define-tag h[% index %] whitespace="delete" endtag="required">
+[% FOREACH prefix IN ['wml_toc_', ''] %]
+<define-tag [% prefix %]h[% index %] whitespace="delete" endtag="required">
 <preserve id />
 <h[% index %]*<attributes-quote %attributes /> >%body</h[% index %]*>
 <set-var %attributes />
@@ -55,6 +56,7 @@ push @{$prev_sects[-1]->{subs}}, { 'id' => $id, 'body' => $my_body, 'subs' => []
 }:>
 <restore id />
 </define-tag>
+[% END %]
 [% END %]
 
 <define-tag toc>

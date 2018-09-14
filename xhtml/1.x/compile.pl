@@ -27,4 +27,3 @@ foreach my $f (@files)
         $t->process( $wml_source, +{}, $wml_f );
     }
 }
-
