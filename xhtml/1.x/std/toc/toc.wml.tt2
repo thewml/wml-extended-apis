@@ -21,6 +21,8 @@ my $id = <<'EOCMMFINVBOWVNIANFINLNGINWNOF';
 <get-var id />
 EOCMMFINVBOWVNIANFINLNGINWNOF
 
+$::wml_last_section_id //= '';
+
 $id ||= $::wml_last_section_id;
 
 my $tag_body = <<'EOCMMFINVBOWVNIANFINLNGINWNOF';
