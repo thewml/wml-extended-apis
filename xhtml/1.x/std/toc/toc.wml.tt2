@@ -89,9 +89,9 @@ my @inner =
             ) :
             ()
         );
-return ($elem->{id}?("<li>", "<a href=\"#" . $elem->{id} . "\">" . $elem->{body} . "</a>",
+return ("<li>", ($elem->{id}?("<a href=\"#" . $elem->{id} . "\">" . $elem->{body} . "</a>"):()),
         @inner,
-        "</li>"):(@inner));
+        "</li>");
 }
 END
 {
