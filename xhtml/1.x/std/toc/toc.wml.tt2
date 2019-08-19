@@ -15,7 +15,7 @@ $wml_xhtml_std_toc_section = { 'subs' => [] };
 <preserve id />
 <h[% index %]*<attributes-quote %attributes /> >%body</h[% index %]*>
 <set-var %attributes />
-<when <get-var id /> >
+<when 1>
 <:{
 
 my $id = <<'EOCMMFINVBOWVNIANFINLNGINWNOF';
@@ -27,7 +27,7 @@ $::wml_last_section_id //= '';
 
 $id ||= $::wml_last_section_id;
 
-if ($id)
+if (1)
 {
 my $tag_body = <<'EOCMMFINVBOWVNIANFINLNGINWNOF';
 %body
@@ -78,8 +78,9 @@ push @{$prev_sects[-1]->{subs}}, { 'id' => $id, 'body' => $my_body, 'subs' => []
 sub myfunc
 {
 my $elem = shift;
-return ("<li>", "<a href=\"#" . $elem->{id} . "\">" . $elem->{body} . "</a>",
-        (@{$_->{subs}} ?
+
+my @inner =
+(@{$_->{subs}} ?
             ("<br />", "<ul>",
                 (map { myfunc($_)
                     }
@@ -87,8 +88,10 @@ return ("<li>", "<a href=\"#" . $elem->{id} . "\">" . $elem->{body} . "</a>",
                 "</ul>",
             ) :
             ()
-        ),
-        "</li>");
+        );
+return ($elem->{id}?("<li>", "<a href=\"#" . $elem->{id} . "\">" . $elem->{body} . "</a>",
+        @inner,
+        "</li>"):(@inner));
 }
 END
 {
