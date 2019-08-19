@@ -15,7 +15,7 @@ $wml_xhtml_std_toc_section = { 'subs' => [] };
 <preserve id />
 <h[% index %]*<attributes-quote %attributes /> >%body</h[% index %]*>
 <set-var %attributes />
-<when <get-var id />
+<when <get-var id /> >
 <:{
 
 my $id = <<'EOCMMFINVBOWVNIANFINLNGINWNOF';
