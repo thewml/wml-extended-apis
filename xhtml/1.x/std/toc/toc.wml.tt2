@@ -1,5 +1,5 @@
 ##
-##  wml::xhtml1::std::toc - Table of Conents Generator
+##  wml::xhtml1::std::toc - Table of Contents Generator
 ##  Copyright (c) 2005 Shlomi Fish
 ##  Distributed under the MIT X11 License
 ##  http://www.opensource.org/licenses/mit-license.php
@@ -15,21 +15,25 @@ $wml_xhtml_std_toc_section = { 'subs' => [] };
 <preserve id />
 <h[% index %]*<attributes-quote %attributes /> >%body</h[% index %]*>
 <set-var %attributes />
+<when <get-var id />
 <:{
 
 my $id = <<'EOCMMFINVBOWVNIANFINLNGINWNOF';
 <get-var id />
 EOCMMFINVBOWVNIANFINLNGINWNOF
+chomp($id);
 
 $::wml_last_section_id //= '';
 
 $id ||= $::wml_last_section_id;
 
+if ($id)
+{
 my $tag_body = <<'EOCMMFINVBOWVNIANFINLNGINWNOF';
 %body
 EOCMMFINVBOWVNIANFINLNGINWNOF
 
-chomp($id);
+
 chomp($tag_body);
 my $parser = HTML::TokeParser::Simple->new(\$tag_body);
 my $my_body;
@@ -57,7 +61,9 @@ foreach my $idx (3 .. [% index %])
     push @prev_sects, $prev_sects[-1]->{'subs'}->[-1];
 }
 push @{$prev_sects[-1]->{subs}}, { 'id' => $id, 'body' => $my_body, 'subs' => [],};
+}
 }:>
+</when>
 <restore id />
 </define-tag>
 [% END %]
