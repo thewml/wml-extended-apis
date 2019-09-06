@@ -102,7 +102,10 @@ $text = join ("\n",
     (map { myfunc($_) } @{$wml_xhtml_std_toc_section->{subs}}),
     "</ul>",
     );
-print "{#WML_XSTD_TOC_ToC#:$text:##}";
+
+use Text::WrapAsUtf8 qw/ print_utf8 /;
+
+print_utf8( "{#WML_XSTD_TOC_ToC#:$text:##}");
 }
 }:>
 </define-tag>
