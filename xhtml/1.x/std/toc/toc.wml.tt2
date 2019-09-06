@@ -49,6 +49,9 @@ while (my $token = $parser->get_token())
     }
 }
 
+use Encode qw/ decode /;
+$my_body = decode('UTF-8', $my_body);
+
 my @prev_sects = ($wml_xhtml_std_toc_section);
 foreach my $idx (3 .. [% index %])
 {
