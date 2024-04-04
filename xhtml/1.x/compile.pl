@@ -5,7 +5,7 @@ use warnings;
 
 use Template;
 
-my @files = ("std/toc/toc");
+my @filenames = ("std/toc/toc");
 
 sub get_file_mtime
 {
@@ -14,16 +14,16 @@ sub get_file_mtime
     return ( stat($path) )[9];
 }
 
-foreach my $f (@files)
+foreach my $fn (@filenames)
 {
-    my $wml_f      = "$f.wml";
-    my $wml_source = "$wml_f.tt2";
+    my $wml_fn     = "$fn.wml";
+    my $wml_source = "$wml_fn.tt2";
     my $src_mtime  = get_file_mtime($wml_source);
-    my $dest_mtime = get_file_mtime($wml_f);
-    if (   ( !-e $wml_f )
+    my $dest_mtime = get_file_mtime($wml_fn);
+    if (   ( !-e $wml_fn )
         || ( $src_mtime > $dest_mtime ) )
     {
         my $t = Template->new();
-        $t->process( $wml_source, +{}, $wml_f );
+        $t->process( $wml_source, +{}, $wml_fn );
     }
 }
