@@ -35,6 +35,9 @@ EOCMMFINVBOWVNIANFINLNGINWNOF
 
 
 chomp($tag_body);
+use Encode qw/ decode /;
+# $tag_body = decode("UTF-8", $tag_body);
+$tag_body = $tag_body;
 my $parser = HTML::TokeParser::Simple->new(\$tag_body);
 my $my_body;
 while (my $token = $parser->get_token())
@@ -50,7 +53,8 @@ while (my $token = $parser->get_token())
 }
 
 use Encode qw/ decode /;
-$my_body = decode('UTF-8', $my_body);
+# $my_body = decode('UTF-8', $my_body);
+$my_body = ($my_body);
 
 my @prev_sects = ($wml_xhtml_std_toc_section);
 foreach my $idx (3 .. [% index %])
@@ -108,7 +112,8 @@ $text = join ("\n",
 
 use Text::WrapAsUtf8 qw/ print_utf8 /;
 
-print_utf8( "{#WML_XSTD_TOC_ToC#:$text:##}");
+# print_utf8();
+print( "{#WML_XSTD_TOC_ToC#:$text:##}");
 }
 }:>
 </define-tag>
